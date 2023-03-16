@@ -6,7 +6,7 @@ For this assignment, students are tasked with developing a small full-stack appl
 The assignment is composed of two independent pieces that make up a simple full-stack application.
 	
 1. A [Node](https://nodejs.org/en/docs/) **server** exposing an API using [Express](https://expressjs.com/en/api.html)
-2. A Web-based **client** using [HTML](https://developer.mozilla.org/en-US/docs/Learn/HTML), [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS), [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript), [Styled Components](https://styled-components.com/), [ReactJS](https://reactjs.org/), and [Create React App](https://github.com/facebook/create-react-app)
+2. A Web-based **client** using [HTML](https://developer.mozilla.org/en-US/docs/Learn/HTML), [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS), [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript), [Styled Home](https://styled-components.com/), [ReactJS](https://reactjs.org/), and [Create React App](https://github.com/facebook/create-react-app)
 
 
 This specification is split into multiple parts. 

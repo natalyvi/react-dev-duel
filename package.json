@@ -17,7 +17,9 @@
     "express-validation": "^1.0.2",
     "http-status": "^1.2.0",
     "morgan": "^1.8.0",
-    "resource-router-middleware": "^0.6.0"
+    "react-router-dom": "^6.9.0",
+    "resource-router-middleware": "^0.6.0",
+    "styled-components": "^5.3.9"
   },
   "devDependencies": {
     "@babel/cli": "^7.6.0",
