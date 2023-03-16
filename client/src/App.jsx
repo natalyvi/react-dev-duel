@@ -6,6 +6,7 @@ import {useEffect} from "react";
 import Home from "./components/Home";
 import{Route, Switch,Link} from "react-router-dom";
 import Inspect from "./components/Inspect";
+import Duel from "./components/Duel";
 
 function App() {
 
@@ -20,8 +21,7 @@ function App() {
             <Switch>
             <Route exact path="/" component={Home}/>
             <Route path="/inspect"  component={Inspect}/>
-            <Route path="/duel" render={() => <h1>duel page</h1> }/>
-            <Route path="/duel2" render={() => <h1>duel page2</h1> }/>
+            <Route path="/duel"  component={Duel}/>
             <GlobalStyles/>
             </Switch>
             <Navbar/>

@@ -6,8 +6,8 @@ const Rectangle= styled.div`
   position: absolute;
   width: 329px;
   height: 58px;
-  left: 556px;
-  top: 183px;
+  left: ${({lf}) => lf};
+  top: ${({tp}) => tp};
 
   background: white;
 

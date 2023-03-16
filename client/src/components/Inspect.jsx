@@ -9,6 +9,8 @@ import SmRectangle from "./Parts/SmRectangle";
 import BgRectangle from "./Parts/BgRectangle";
 import Button from "./Parts/Button";
 import {useState} from "react";
+import BioCont from "./Parts/BioCont";
+import Picture from "./Parts/Picture";
 
 const StyledComponentss = styled.div`
   position: absolute;
@@ -19,21 +21,21 @@ const StyledComponentss = styled.div`
 
 const Inspect = () => {
 
-    let userData = {
-        avatarUrl: '1',
-        bio: '2',
-        username: '3',
-        name: '4',
-        location: '5',
-        titles: '6',
-        favLanguages: '7',
-        totalStars: '8',
-        highestStarCount: '9',
-        publicRepos: '10',
-        perfectRepos: '11',
-        followers: '12',
-        following: '13'
-    }
+    const [userData, setUserData] = useState({
+        avatarUrl: "",
+        bio: "",
+        username: "",
+        name: "",
+        location: "",
+        titles: "",
+        favLanguages: "",
+        totalStars: "",
+        highestStarCount: "",
+        publicRepos: "",
+        perfectRepos: "",
+        followers: "",
+        following: "",
+    })
 
     const retrieveData = async function (username) {
         console.log('In retrieveData() function');
@@ -41,6 +43,7 @@ const Inspect = () => {
         let response = await fetch(`http://localhost:3000/api/user/${username}`)
             .catch(error => {
                 console.error(error);
+
             });
         // only proceed once promise is resolved
         let data = await response.json()
@@ -48,20 +51,21 @@ const Inspect = () => {
             console.error(error);
         });*/
         console.log(data);
-        // only proceed once second promise is resolved
-        userData.avatarUrl = data["avatar_url"];
-        userData.bio = data["bio"];
-        userData.username = data["username"];
-        userData.name = data["name"];
-        userData.location = data["location"];
-        userData.titles = data["titles"];
-        userData.favLanguages = data["favorite-language"];
-        userData.totalStars = data["total-stars"];
-        userData.highestStarCount = data["highest-starred"];
-        userData.publicRepos = data["public-repos"];
-        userData.perfectRepos = data["perfect-repos"];
-        userData.followers = data["followers"];
-        userData.following = data["following"];
+        setUserData({
+            avatarUrl: data["avatar_url"],
+            bio: data["bio"],
+            username: data["username"],
+            name: data["name"],
+            location: data["location"],
+            titles: data["titles"],
+            favLanguages: data["favorite-language"],
+            totalStars: data["total-stars"],
+            highestStarCount: data["highest-starred"],
+            publicRepos: data["public-repos"],
+            perfectRepos: data["perfect-repos"],
+            followers: data["followers"],
+            following: data["following"]
+        })
     }
 
 
@@ -71,16 +75,32 @@ const Inspect = () => {
         }
     })
 
+    const [toggle, setToggle] = useState(false);
+    const handleToggle = () => {
+        setToggle('block');
+    };
+
     return (
         <StyledComponentss>
-            <Rectangle>
+            <Rectangle tp="183px" lf="556px">
                 <Input placeholder="username" type="text" value={username.username.value}
-                       onChange={(e) => updateUsername({...username, username: {...username.username, value:e.target.value}})}></Input>
+                       onChange={(e) => updateUsername({
+                           ...username,
+                           username: {...username.username, value: e.target.value}
+                       })}></Input>
             </Rectangle>
-            <Button onClick={() => retrieveData(username.username.value)} type='button' lf="585px" tp="300px">
+            <Button onClick={() => {
+                retrieveData(username.username.value);
+                handleToggle()
+            }} type='button' lf="585px" tp="300px">
                 <Text lf="588px">Inspect</Text>
             </Button>
-            <FormCard>
+
+            <FormCard visibility={toggle} lf="396px" tp="447px">
+                <BioCont>
+                    {userData.bio}
+                </BioCont>
+                <Picture src={userData.avatarUrl}/>
                 <SmRectangle lf="270px" tp="30px">
                     username
                 </SmRectangle>
@@ -115,9 +135,10 @@ const Inspect = () => {
                     following
                 </SmRectangle>
                 <BgRectangle lf="390px" tp="25px">
+                    {userData.username}
                 </BgRectangle>
                 <BgRectangle lf="390px" tp="65px">
-                    {userData.username}
+                    {userData.name}
                 </BgRectangle>
                 <BgRectangle lf="390px" tp="105px">
                     {userData.location}
@@ -146,15 +167,9 @@ const Inspect = () => {
                 <BgRectangle lf="390px" tp="425px">
                     {userData.following}
                 </BgRectangle>
-
-
             </FormCard>
-
-
         </StyledComponentss>
     )
-
-
 }
 
 export default Inspect
