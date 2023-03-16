@@ -1,4 +1,3 @@
-
 import Text from "./Parts/Text";
 import Container from "./Parts/Container";
 import Title from "./Parts/Title"
@@ -8,7 +7,7 @@ import Paragraf from "./Parts/Paragraf";
 import {Link} from "react-router-dom";
 
 const StyledComponents = styled.div`
- position: absolute;
+  position: absolute;
   margin-left: 230px;
   margin-top: -110px;
 `
@@ -16,12 +15,12 @@ const StyledComponents = styled.div`
 
 const Home = () => {
     return (
-        <StyledComponents >
+        <StyledComponents>
 
             <Container lf="388px" tp="474px">
                 <Link to="/inspect">
                     <Text lf="188px">Inspect</Text>
-                    </Link>
+                </Link>
             </Container>
             <Container lf="788px" tp="474px">
                 <Link to="/duel">

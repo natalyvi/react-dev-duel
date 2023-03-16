@@ -7,6 +7,8 @@ import Container from "./Parts/Container";
 import FormCard from "./Parts/FormCard";
 import SmRectangle from "./Parts/SmRectangle";
 import BgRectangle from "./Parts/BgRectangle";
+import Button from "./Parts/Button";
+import {useState} from "react";
 
 const StyledComponentss = styled.div`
   position: absolute;
@@ -14,15 +16,70 @@ const StyledComponentss = styled.div`
   margin-top: -40px;
 `
 
+
 const Inspect = () => {
+
+    let userData = {
+        avatarUrl: '1',
+        bio: '2',
+        username: '3',
+        name: '4',
+        location: '5',
+        titles: '6',
+        favLanguages: '7',
+        totalStars: '8',
+        highestStarCount: '9',
+        publicRepos: '10',
+        perfectRepos: '11',
+        followers: '12',
+        following: '13'
+    }
+
+    const retrieveData = async function (username) {
+        console.log('In retrieveData() function');
+        // await response of fetch call
+        let response = await fetch(`http://localhost:3000/api/user/${username}`)
+            .catch(error => {
+                console.error(error);
+            });
+        // only proceed once promise is resolved
+        let data = await response.json()
+        /*.catch(error => {
+            console.error(error);
+        });*/
+        console.log(data);
+        // only proceed once second promise is resolved
+        userData.avatarUrl = data["avatar_url"];
+        userData.bio = data["bio"];
+        userData.username = data["username"];
+        userData.name = data["name"];
+        userData.location = data["location"];
+        userData.titles = data["titles"];
+        userData.favLanguages = data["favorite-language"];
+        userData.totalStars = data["total-stars"];
+        userData.highestStarCount = data["highest-starred"];
+        userData.publicRepos = data["public-repos"];
+        userData.perfectRepos = data["perfect-repos"];
+        userData.followers = data["followers"];
+        userData.following = data["following"];
+    }
+
+
+    const [username, updateUsername] = useState({
+        username: {
+            value: ""
+        }
+    })
+
     return (
         <StyledComponentss>
             <Rectangle>
-                <Input placeholder="username" type="text"></Input>
+                <Input placeholder="username" type="text" value={username.username.value}
+                       onChange={(e) => updateUsername({...username, username: {...username.username, value:e.target.value}})}></Input>
             </Rectangle>
-            <Container lf="585px" tp="300px">
+            <Button onClick={() => retrieveData(username.username.value)} type='button' lf="585px" tp="300px">
                 <Text lf="588px">Inspect</Text>
-            </Container>
+            </Button>
             <FormCard>
                 <SmRectangle lf="270px" tp="30px">
                     username
@@ -58,37 +115,36 @@ const Inspect = () => {
                     following
                 </SmRectangle>
                 <BgRectangle lf="390px" tp="25px">
-                    zalupa
                 </BgRectangle>
                 <BgRectangle lf="390px" tp="65px">
-                    zalupa
+                    {userData.username}
                 </BgRectangle>
                 <BgRectangle lf="390px" tp="105px">
-                    zalupa
+                    {userData.location}
                 </BgRectangle>
                 <BgRectangle lf="390px" tp="145px">
-                    zalupa
+                    {userData.titles}
                 </BgRectangle>
                 <BgRectangle lf="390px" tp="185px">
-                    zalupa
+                    {userData.favLanguages}
                 </BgRectangle>
                 <BgRectangle lf="390px" tp="225px">
-                    zalupa
+                    {userData.totalStars}
                 </BgRectangle>
                 <BgRectangle lf="390px" tp="265px">
-                    zalupa
+                    {userData.highestStarCount}
                 </BgRectangle>
                 <BgRectangle lf="390px" tp="305px">
-                    zalupa
+                    {userData.publicRepos}
                 </BgRectangle>
                 <BgRectangle lf="390px" tp="345px">
-                    zalupa
+                    {userData.perfectRepos}
                 </BgRectangle>
                 <BgRectangle lf="390px" tp="385px">
-                    zalupa
+                    {userData.followers}
                 </BgRectangle>
                 <BgRectangle lf="390px" tp="425px">
-                    zalupa
+                    {userData.following}
                 </BgRectangle>
 
 
