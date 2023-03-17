@@ -64,28 +64,12 @@ const Duel = () => {
     })
 
     const [infoToggle, setInfoToggle] = useState(false);
-    const [winner1Toggle, setWinner1Toggle] = useState(false);
-    const [winner2Toggle, setWinner2Toggle] = useState(false);
+    /*const [winner1Toggle, setWinner1Toggle] = useState(false);
+    const [winner2Toggle, setWinner2Toggle] = useState(false);*/
 
     const handleToggle = () => {
         setInfoToggle('block');
     };
-
-    const determineWinnerToggles = () => {
-        console.log('user 1 followers: ' + user1Data.followers);
-        console.log('user 2 followers: ' + user2Data.followers);
-        if (user1Data.followers > user2Data.followers) {
-            setWinner1Toggle('block');
-            setWinner2Toggle('none');
-        } else if (user2Data.followers > user1Data.followers) {
-            setWinner2Toggle('block');
-            setWinner1Toggle('none');
-        } else {
-            setWinner1Toggle('none');
-            setWinner2Toggle('none');
-        }
-    }
-
     const retrieveData = async function (username, userData, setUserData) {
         console.log('In retrieveData() function');
         // await response of fetch call
@@ -117,6 +101,14 @@ const Duel = () => {
         })
     }
 
+    const logUser1 = () => {
+        console.log(user1Data);
+    };
+
+    const logUser2 = () => {
+        console.log(user2Data);
+    };
+
     return (
         <StyleCompnt>
             <Rectangle tp="183px" lf="770px">
@@ -137,13 +129,16 @@ const Duel = () => {
                 retrieveData(username1.username.value, user1Data, setUser1Data);
                 retrieveData(username2.username.value, user2Data, setUser2Data);
                 handleToggle();
-                determineWinnerToggles();
             }} type='button' lf="585px" tp="300px">
                 <Text lf="588px">Duel</Text>
             </Button>
-
-            <Winner visibility={winner1Toggle} lf="169px" tp="384px"> Winner !!!!</Winner>
-
+            <Winner lf="169px" tp="384px">
+                {infoToggle && (
+                    <div>
+                        {user1Data.followers < user2Data.followers ? ' Winner !!!!' : ''}
+                    </div>
+                )}
+            </Winner>
             <FormCard visibility={infoToggle} lf="750px" tp="447px">
                 <BioCont>
                     {user1Data.bio}
@@ -216,7 +211,14 @@ const Duel = () => {
                     {user1Data.following}
                 </BgRectangle>
             </FormCard>
-            {/*<Winner visibility={winner2Toggle} lf="800px" tp="384px"> Winner !!!!</Winner>*/}
+
+            <Winner lf="900px" tp="384px">
+                {infoToggle && (
+                    <div>
+                        {user1Data.followers > user2Data.followers ? ' Winner !!!!' : ''}
+                    </div>
+                )}
+            </Winner>
             <FormCard visibility={infoToggle} lf="50px" tp="447px">
                 <BioCont>
                     {user2Data.bio}
@@ -290,6 +292,6 @@ const Duel = () => {
                 </BgRectangle>
             </FormCard>
         </StyleCompnt>
-    )
+    );
 }
 export default Duel

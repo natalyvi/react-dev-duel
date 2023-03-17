@@ -7,7 +7,6 @@ const BioCont = styled.div`
   height: 16px;
   left: 93px;
   top: 240px;
-
   font-family: 'Roboto',serif;
   font-style: normal;
   font-weight: 300;

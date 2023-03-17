@@ -9,7 +9,6 @@ const Paragraf = styled.div`
   height: 56px;
   left: ${({lf}) =>lf};
   top: 577px;
-
   font-family: 'Roboto',serif;
   font-style: normal;
   font-weight: 300;

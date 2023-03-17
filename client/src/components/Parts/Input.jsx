@@ -6,6 +6,7 @@ const Input = styled.input.attrs({type:"username"})`
   border: 1px solid rgba(0, 0, 0, 0.75);
   border-radius: 15px;
   height: 58px;
+  text-align: center;
   
 `
 export default Input

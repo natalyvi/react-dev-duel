@@ -8,9 +8,7 @@ const Rectangle= styled.div`
   height: 58px;
   left: ${({lf}) => lf};
   top: ${({tp}) => tp};
-
   background: white;
-
   border-radius: 15px;`
 
 export default Rectangle

@@ -8,11 +8,10 @@ const SmRectangle = styled.div`
      height: 26px;
      left: ${({lf}) =>lf};
      top: ${({tp}) =>tp};
-
      background: #E1F1FF;
      border: 1px solid rgba(0, 0, 0, 0.75);
      border-radius: 5px;
-      text-align: center;
-      font-size: 13px`
+     text-align: center;
+     font-size: 13px`
 
 export default SmRectangle

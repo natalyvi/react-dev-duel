@@ -9,8 +9,6 @@ const Text = styled.div`
   height: 82px;
   left: ${({lf}) =>lf};
   top: 495px;
-  
-
   font-family: 'Roboto',serif;
   font-style: normal;
   font-weight: 300;

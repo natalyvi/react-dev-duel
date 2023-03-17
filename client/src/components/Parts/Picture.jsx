@@ -7,7 +7,6 @@ const Picture = styled.img`
   top: 120px;
   bottom: 6.25%;
   border-radius: 60px;
- 
   width: 100px;
   height: 100px;
 

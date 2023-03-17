@@ -10,7 +10,6 @@ const Line = styled.div`
   height: 0;
   left: 690.47px;
   top: 515px;
-
   border: 3px solid #000000;
   transform: rotate(89.94deg);
 `
